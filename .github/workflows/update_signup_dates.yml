@@ -1,0 +1,33 @@
+name: Update spreadsheet dates
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Update Signup Dates
+        env:
+          CLIENT_ID: ${{ secrets.SHEETS_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.SHEETS_CLIENT_SECRET }}
+          REFRESH_TOKEN: ${{ secrets.SHEETS_REFRESH_TOKEN }}
+          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
+          DISCORD_WEBHOOK_SUCCESS: ${{ secrets.DISCORD_WEBHOOK_SUCCESS }}
+          DISCORD_WEBHOOK_FAILURE: ${{ secrets.DISCORD_WEBHOOK_FAILURE }}
+        run: |
+          python update_signup_dates.py
