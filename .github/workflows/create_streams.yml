@@ -29,7 +29,7 @@ jobs:
           CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
           REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
-          DISCORD_WEBHOOK_SUCCESS: ${{ secrets.DISCORD_WEBHOOK_SUCCESS }}
+          DISCORD_WEBHOOK_SUCCESS: ${{ secrets.DISCORD_WEBHOOK_STREAMS }}
           DISCORD_WEBHOOK_FAILURE: ${{ secrets.DISCORD_WEBHOOK_FAILURE }}
       run: |
         python create_broadcasts.py

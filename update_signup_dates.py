@@ -11,7 +11,6 @@ SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
 # The ID and range of a sample spreadsheet.
 SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID")
-DISCORD_WEBHOOK_SUCCESS = os.environ.get("DISCORD_WEBHOOK_SUCCESS")
 DISCORD_WEBHOOK_FAILURE = os.environ.get("DISCORD_WEBHOOK_FAILURE")
 
 

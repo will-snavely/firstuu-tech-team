@@ -27,7 +27,6 @@ jobs:
           CLIENT_SECRET: ${{ secrets.SHEETS_CLIENT_SECRET }}
           REFRESH_TOKEN: ${{ secrets.SHEETS_REFRESH_TOKEN }}
           SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
-          DISCORD_WEBHOOK_SUCCESS: ${{ secrets.DISCORD_WEBHOOK_SUCCESS }}
           DISCORD_WEBHOOK_FAILURE: ${{ secrets.DISCORD_WEBHOOK_FAILURE }}
         run: |
           python update_signup_dates.py

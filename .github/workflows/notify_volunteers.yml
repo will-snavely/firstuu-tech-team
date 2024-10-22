@@ -28,7 +28,7 @@ jobs:
           REFRESH_TOKEN: ${{ secrets.SHEETS_REFRESH_TOKEN }}
           SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
           DISCORD_NAMES: ${{ secrets.DISCORD_WEBHOOK_FAILURE }}
-          DISCORD_WEBHOOK_SUCCESS: ${{ secrets.DISCORD_WEBHOOK_SUCCESS }}
+          DISCORD_WEBHOOK_SUCCESS: ${{ secrets.DISCORD_WEBHOOK_SCHEDULE }}
           DISCORD_WEBHOOK_FAILURE: ${{ secrets.DISCORD_WEBHOOK_FAILURE }}
         run: |
           echo ${{ secrets.DISCORD_NAMES }} | base64 -d > discord_names.json
