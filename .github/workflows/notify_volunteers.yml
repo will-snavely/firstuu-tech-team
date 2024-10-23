@@ -32,4 +32,4 @@ jobs:
           DISCORD_WEBHOOK_FAILURE: ${{ secrets.DISCORD_WEBHOOK_FAILURE }}
         run: |
           echo "${{ secrets.DISCORD_NAMES }}" | base64 -d > discord_names.json
-          python notify.py
+          python notify_volunteers.py
