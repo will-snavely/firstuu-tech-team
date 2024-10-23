@@ -122,7 +122,8 @@ def get_broadcasts(youtube, broadcast_status):
 
 def main():
     scopes = ["https://www.googleapis.com/auth/youtube"]
-    youtube = auth.get_authenticated_service(scopes, "youtube", "v3")
+    creds = auth.authenticate(scopes, token_path="youtube_token.json")
+    youtube = auth.youtube_service(creds)
     broadcasts = []
     try:
         broadcasts = get_broadcasts(youtube, 'upcoming')

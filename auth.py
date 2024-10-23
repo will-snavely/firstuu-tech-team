@@ -23,12 +23,11 @@ def get_refresh_token(cli_id, secret, refresh):
         return None
 
 
-def get_authenticated_service(scopes, api_service_name, api_version):
+def authenticate(scopes, token_path="token.json"):
     creds = None
     client_id = os.environ.get("CLIENT_ID")
     client_secret = os.environ.get("CLIENT_SECRET")
     refresh_token = os.environ.get("REFRESH_TOKEN")
-    token_path = "{}_{}_token.json".format(api_service_name, api_version)
 
     if client_id and client_secret and refresh_token:
         access_token = get_refresh_token(client_id, client_secret, refresh_token)
@@ -46,4 +45,12 @@ def get_authenticated_service(scopes, api_service_name, api_version):
             creds = flow.run_local_server(port=0)
         with open(token_path, "w") as token:
             token.write(creds.to_json())
-    return build(api_service_name, api_version, credentials=creds)
+    return creds
+
+
+def sheets_service(creds):
+    return build("sheets", "v4", credentials=creds)
+
+
+def youtube_service(creds):
+    return build("youtube", "v3", credentials=creds)
