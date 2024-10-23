@@ -31,5 +31,5 @@ jobs:
           DISCORD_WEBHOOK_SUCCESS: ${{ secrets.DISCORD_WEBHOOK_SCHEDULE }}
           DISCORD_WEBHOOK_FAILURE: ${{ secrets.DISCORD_WEBHOOK_FAILURE }}
         run: |
-          echo ${{ secrets.DISCORD_NAMES }} | base64 -d > discord_names.json
+          echo "${{ secrets.DISCORD_NAMES }}" | base64 -d > discord_names.json
           python notify.py
