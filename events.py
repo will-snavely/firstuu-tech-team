@@ -10,6 +10,7 @@ class Event(NamedTuple):
     end: datetime.time
     crew: list[str]
     description: str
+    event_id: str
 
 
 header = [
@@ -20,7 +21,8 @@ header = [
     "Person 2",
     "Person 3",
     "Person 4",
-    "Description"]
+    "Description",
+    "Event ID"]
 
 
 def get_signup_data(sheet, sheet_id) -> list[Event]:
@@ -42,7 +44,8 @@ def get_signup_data(sheet, sheet_id) -> list[Event]:
             start=dateparser.parse(row[1]).time(),
             end=dateparser.parse(row[2]).time(),
             crew=[name for name in row[3:7] if name.strip()],
-            description=row[7] if len(row) >= 7 else None
+            description=row[7] if len(row) >= 7 else None,
+            event_id=row[8]
         ))
 
     return events
@@ -63,5 +66,6 @@ def to_spreadsheet_rows(events: list[Event]) -> list[list[str]]:
             except:
                 row.append("")
         row.append(e.description)
+        row.append(e.event_id)
         result.append(row)
     return result
