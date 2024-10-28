@@ -40,7 +40,8 @@ def main():
                 start=time(9, 30),
                 end=time(12),
                 crew=[],
-                description="Sunday Morning Service"))
+                description="Sunday Morning Service",
+                event_id=""))
 
     all_events = current_events + added_events
     all_events.sort(key=lambda ev: ev.date)
