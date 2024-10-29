@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   push:
+    runs-on: ubuntu-latest
     steps:
       - name: Push Broadcast Manager
       - uses: daikikatsuragawa/clasp-action@v1.1.0
