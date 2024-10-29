@@ -22,7 +22,7 @@ jobs:
           clientId: ${{ secrets.CLIENT_ID }}
           clientSecret: ${{ secrets.CLIENT_SECRET }}
           scriptId: ${{ secrets.SCRIPT_ID }}
-          working-directory: ./google_apps/broadcast_manager
+          rootDir: ./google_apps/broadcast_manager
           command: 'push'
     
     
