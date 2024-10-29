@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Push Broadcast Manager
-      - uses: daikikatsuragawa/clasp-action@v1.1.0
+        uses: daikikatsuragawa/clasp-action@v1.1.0
         with:
           accessToken: ${{ secrets.ACCESS_TOKEN }}
           idToken: ${{ secrets.ID_TOKEN }}
@@ -25,7 +25,7 @@ jobs:
           rootDir: google_apps/broadcast_manager
           command: 'push'
       - name: Push Event Form
-      - uses: daikikatsuragawa/clasp-action@v1.1.0
+        uses: daikikatsuragawa/clasp-action@v1.1.0
         with:
           accessToken: ${{ secrets.ACCESS_TOKEN }}
           idToken: ${{ secrets.ID_TOKEN }}
@@ -36,7 +36,7 @@ jobs:
           rootDir: google_apps/event_form
           command: 'push'
       - name: Push Signup Tools
-      - uses: daikikatsuragawa/clasp-action@v1.1.0
+        uses: daikikatsuragawa/clasp-action@v1.1.0
         with:
           accessToken: ${{ secrets.ACCESS_TOKEN }}
           idToken: ${{ secrets.ID_TOKEN }}
