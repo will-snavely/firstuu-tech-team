@@ -21,12 +21,41 @@ function syncCalendar(range) {
   var sheet = SpreadsheetApp.getActiveSheet();
   const calendarId = PropertiesService.getScriptProperties().getProperty("CALENDAR_ID");
   var calendar = CalendarApp.getCalendarById(calendarId);
+
   var startRow = range.getRow();
   var lastRow = range.getLastRow();
-  var data = sheet.getSheetValues(startRow, 1, lastRow, 10);
   console.log("Start row: " + startRow);
   console.log("Last row: " + lastRow);
-  
+
+  var data = sheet.getSheetValues(startRow, 1, lastRow, 10);
+  var earliest = new Date();
+  earliest.setFullYear(3000) 
+  var latest = new Date();
+  latest.setFullYear(1000);
+  for (var i = 0; i < data.length; i++) {
+    const entry = data[i];
+    if(String(entry[0]).trim() !== '') {
+      if(entry[0].getTime() < earliest.getTime()) {
+        earliest = new Date(entry[0]);
+      }
+      if(entry[0].getTime() > latest.getTime()) {
+        latest = new Date(entry[0]);
+      }
+    } 
+  }
+
+  console.log("Earliest Date: " + earliest);
+  console.log("Latest Date: " + latest);
+  earliest.setDate(earliest.getDate() - 5);
+  earliest.setHours(12,0,0,0);
+  latest.setDate(latest.getDate() + 1);
+  latest.setHours(12,0,0,0);
+  var events = calendar.getEvents(earliest, latest);
+  const eventMap = new Map();
+  for(var i = 0; i < events.length; i++) {
+    eventMap.set(events[i].getId(), events[i]);
+  }
+
   for (var i = 0; i < data.length; i++) {
     var date = data[i][0];
     var startTime = data[i][1];
@@ -37,15 +66,11 @@ function syncCalendar(range) {
       || String(startTime).trim() === '' 
       || String(endTime).trim() === '' 
       || String(description).trim() === '') {
-      return;
+      continue;
     }
 
-    startTime.setDate(date.getDate());
-    startTime.setMonth(date.getMonth());
-    startTime.setFullYear(date.getFullYear());
-    endTime.setDate(date.getDate());
-    endTime.setMonth(date.getMonth());
-    endTime.setFullYear(date.getFullYear());
+    startTime.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
+    endTime.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
 
     var crew = [];
     for (var j = 0; j < 4; j++) {
@@ -69,13 +94,14 @@ function syncCalendar(range) {
       event.setColor(CalendarApp.EventColor.BLUE);
       sheet.getRange(startRow + i, 9).setValue(event.getId());
     } else {
-      var event = calendar.getEventById(eventId);
+      var event = eventMap.get(eventId);
       if(event.getTitle() !== eventDesc 
           || event.getStartTime().getTime() !== startTime.getTime() 
-          || event.getEndTime().getTime() !== endTime.getTime())
-      console.log("Updating Event with ID: " + event.getId());
-      event.setTitle(eventDesc);
-      event.setTime(startTime, endTime);
+          || event.getEndTime().getTime() !== endTime.getTime()) {
+        console.log("Updating Event with ID: " + event.getId());
+        event.setTitle(eventDesc);
+        event.setTime(startTime, endTime);
+      }
     }
   }
 }

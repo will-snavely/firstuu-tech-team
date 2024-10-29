@@ -7,6 +7,13 @@
         "version": "v3",
         "serviceId": "calendar"
       }
+    ],
+    "libraries": [
+      {
+        "userSymbol": "cUseful",
+        "version": "134",
+        "libraryId": "1EbLSESpiGkI3PYmJqWh3-rmLkYKAtCNPi1L2YCtMgo2Ut8xMThfJ41Ex"
+      }
     ]
   },
   "exceptionLogging": "STACKDRIVER",
