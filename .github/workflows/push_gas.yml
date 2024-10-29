@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Push Broadcast Manager
-        working-directory: ./google_apps/broadcast_manager
         uses: daikikatsuragawa/clasp-action@v1.1.0
         with:
           accessToken: ${{ secrets.ACCESS_TOKEN }}
@@ -23,6 +22,7 @@ jobs:
           clientId: ${{ secrets.CLIENT_ID }}
           clientSecret: ${{ secrets.CLIENT_SECRET }}
           scriptId: ${{ secrets.SCRIPT_ID }}
+          working-directory: ./google_apps/broadcast_manager
           command: 'push'
     
     
