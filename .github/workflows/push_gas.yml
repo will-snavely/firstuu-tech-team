@@ -10,11 +10,11 @@
     rootDir: google_apps/signup_tools
     command: 'push'
 
-on:
+- on:
   workflow_dispatch:
   push:
     branches:
       - main
 
-permissions:
+-permissions:
   contents: read
