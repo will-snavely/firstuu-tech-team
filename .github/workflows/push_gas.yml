@@ -1,4 +1,4 @@
-name: Pushing Google App Scripts
+- name: Push Signup Tools
 - uses: daikikatsuragawa/clasp-action@v1.1.0
   with:
     accessToken: ${{ secrets.ACCESS_TOKEN }}
