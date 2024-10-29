@@ -1,17 +1,50 @@
-- name: Push Signup Tools
-- uses: daikikatsuragawa/clasp-action@v1.1.0
-  with:
-    accessToken: ${{ secrets.ACCESS_TOKEN }}
-    idToken: ${{ secrets.ID_TOKEN }}
-    refreshToken: ${{ secrets.REFRESH_TOKEN }}
-    clientId: ${{ secrets.CLIENT_ID }}
-    clientSecret: ${{ secrets.CLIENT_SECRET }}
-    scriptId: ${{ secrets.SCRIPT_ID }}
-    rootDir: google_apps/signup_tools
-    command: 'push'
+name: Push Google App Scripts
 
-- on:
-  - workflow_dispatch:
-  - push:
+on:
+  workflow_dispatch:
+  push:
     branches:
       - main
+
+permissions:
+  contents: read
+
+jobs:
+  push:
+    steps:
+      - name: Push Broadcast Manager
+      - uses: daikikatsuragawa/clasp-action@v1.1.0
+      with:
+        accessToken: ${{ secrets.ACCESS_TOKEN }}
+        idToken: ${{ secrets.ID_TOKEN }}
+        refreshToken: ${{ secrets.REFRESH_TOKEN }}
+        clientId: ${{ secrets.CLIENT_ID }}
+        clientSecret: ${{ secrets.CLIENT_SECRET }}
+        scriptId: ${{ secrets.SCRIPT_ID }}
+        rootDir: google_apps/broadcast_manager
+        command: 'push'
+      - name: Push Event Form
+      - uses: daikikatsuragawa/clasp-action@v1.1.0
+      with:
+        accessToken: ${{ secrets.ACCESS_TOKEN }}
+        idToken: ${{ secrets.ID_TOKEN }}
+        refreshToken: ${{ secrets.REFRESH_TOKEN }}
+        clientId: ${{ secrets.CLIENT_ID }}
+        clientSecret: ${{ secrets.CLIENT_SECRET }}
+        scriptId: ${{ secrets.SCRIPT_ID }}
+        rootDir: google_apps/event_form
+        command: 'push'
+      - name: Push Signup Tools
+      - uses: daikikatsuragawa/clasp-action@v1.1.0
+      with:
+        accessToken: ${{ secrets.ACCESS_TOKEN }}
+        idToken: ${{ secrets.ID_TOKEN }}
+        refreshToken: ${{ secrets.REFRESH_TOKEN }}
+        clientId: ${{ secrets.CLIENT_ID }}
+        clientSecret: ${{ secrets.CLIENT_SECRET }}
+        scriptId: ${{ secrets.SCRIPT_ID }}
+        rootDir: google_apps/signup_tools
+        command: 'push'
+    
+    
+    
