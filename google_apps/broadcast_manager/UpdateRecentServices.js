@@ -36,6 +36,7 @@ function flatten(service) {
 }
 
 function getContent_(url) {
+    Logging.log("Attempting to fetch URL: " + url);
     return UrlFetchApp.fetch(url).getContentText();
 }
 
@@ -71,6 +72,7 @@ function parseMonth(s) {
 }
 
 function parseDate(s) {
+  Logger.log("Attempting to parse string: " + s);
   var parts = s.toLowerCase().split(/\s+/);  
   const month = parseMonth(parts[0]);
   const day = parseInt(parts[1].replace(",", ""));
@@ -95,13 +97,8 @@ function parseDate(s) {
   }
   
   var result = new Date();
-  result.setMonth(month);
-  result.setDate(day);
-  result.setFullYear(year);
-  result.setHours(hours);
-  result.setMinutes(minutes);
-  result.setSeconds(0);
-  result.setMilliseconds(0);
+  result.setFullYear(year, month, day);
+  result.setHours(hours, minutes, 0, 0);
   Logger.log(result);
   return result;
 }

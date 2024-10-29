@@ -12,6 +12,8 @@ function createBroadcasts() {
     .mapRows(function(row) {
       if (!row.youtube_url) { // if not already scheduled
         // Create a broadcast
+        Logger.log("Creating broadcast for row:");
+        Logger.log(row);
         var broadcast_resource = insertBroadcast(row);
         // step 2 - prep data to add back to the sheet
         row.youtube_url = "https://youtu.be/" + broadcast_resource.id;

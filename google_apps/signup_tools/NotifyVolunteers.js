@@ -59,7 +59,7 @@ function sendToDiscord(event, nameMap) {
           "Content-Type": "application/json",
       },
       "payload": JSON.stringify({
-          "content": "‌Upcoming Event Reminder " + notifyStr,
+          "content": "Upcoming Event Reminder " + notifyStr,
           "embeds": [{
               "title": embedTitle,
               "color": 33023,
