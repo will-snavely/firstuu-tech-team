@@ -33,7 +33,7 @@ jobs:
           refreshToken: ${{ secrets.REFRESH_TOKEN }}
           clientId: ${{ secrets.CLIENT_ID }}
           clientSecret: ${{ secrets.CLIENT_SECRET }}
-          scriptId: ${{ secrets.SCRIPT_ID }}
+          scriptId: ${{ secrets.BROADCAST_SCRIPT }}
           rootDir: google_apps/broadcast_manager
           command: 'push'
       - name: Push Event Form Script
