@@ -36,7 +36,7 @@ function flatten(service) {
 }
 
 function getContent_(url) {
-    Logging.log("Attempting to fetch URL: " + url);
+    Logger.log("Attempting to fetch URL: " + url);
     return UrlFetchApp.fetch(url).getContentText();
 }
 
