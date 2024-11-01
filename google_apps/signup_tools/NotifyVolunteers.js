@@ -63,8 +63,7 @@ function sendToDiscord(event, nameMap) {
           "embeds": [{
               "title": embedTitle,
               "color": 33023,
-              "description": embedMessage,
-              "timestamp": new Date().toISOString()
+              "description": embedMessage
           }]
       })  
   };
