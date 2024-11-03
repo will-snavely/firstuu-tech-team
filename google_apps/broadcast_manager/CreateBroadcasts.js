@@ -32,7 +32,7 @@ function updateVideo(video_id, title, category_id) {
   var update_video_response = YouTube.videosUpdate("id,snippet", {
     "id": video_id,
     "snippet": {
-      "title": title
+      "title": title,
       "categoryId": category_id
     }
   }, {});
