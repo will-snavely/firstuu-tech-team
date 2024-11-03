@@ -19,7 +19,7 @@ function createBroadcasts() {
         var broadcast_resource = insertBroadcast(row);
 
         // Update the category
-        updateVideo(broadcast_resource.id, row.title, NONPROFIT_CATEGORY);
+        updateVideo(broadcast_resource.id, row.title, NONPROFIT_CATEGORY, row.description);
 
         // Prep data to add back to the sheet
         row.youtube_url = "https://youtu.be/" + broadcast_resource.id;
@@ -28,12 +28,13 @@ function createBroadcasts() {
     }).dumpValues();
 }
 
-function updateVideo(video_id, title, category_id) {
+function updateVideo(video_id, title, category_id, description) {
   var update_video_response = YouTube.videosUpdate("id,snippet", {
     "id": video_id,
     "snippet": {
       "title": title,
-      "categoryId": category_id
+      "categoryId": category_id,
+      "description": description
     }
   }, {});
   Logger.log(update_video_response);
