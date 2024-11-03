@@ -4,6 +4,8 @@
 YouTube.setTokenService(function() {
   return getYouTubeService().getAccessToken();
 });
+
+NONPROFIT_CATEGORY = 29;
  
 // Read data from current sheet and create live events returning details back to sheet
 function createBroadcasts() {
@@ -15,11 +17,27 @@ function createBroadcasts() {
         Logger.log("Creating broadcast for row:");
         Logger.log(row);
         var broadcast_resource = insertBroadcast(row);
-        // step 2 - prep data to add back to the sheet
+
+        // Update the category
+        updateVideo(broadcast_resource.id, row.title, NONPROFIT_CATEGORY);
+
+        // Prep data to add back to the sheet
         row.youtube_url = "https://youtu.be/" + broadcast_resource.id;
       }
       return row;
     }).dumpValues();
+}
+
+function updateVideo(video_id, title, category_id) {
+  var update_video_response = YouTube.videosUpdate("id,snippet", {
+    "id": video_id
+    "snippet": {
+      "title": title
+      "categoryId": category_id
+    }
+  }, {});
+  Logger.log(update_video_response);
+  return update_video_response;
 }
  
 // The following is based on
