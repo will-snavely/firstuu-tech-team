@@ -40,7 +40,7 @@ function sendToDiscord(e) {
           "Content-Type": "application/json",
       },
       "payload": JSON.stringify({
-          "content": "‌",
+          "content": "An event request has been sent to the tech team. Sign up here: https://docs.google.com/spreadsheets/d/1MQZ_Vr_B2U0mih87UEgg2KjBKXacx_PV8f0oJaMnPTk/edit?usp=sharing",
           "embeds": [{
               "title": "Tech Team Support Request",
               "color": 33023,
