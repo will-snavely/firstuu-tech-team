@@ -63,7 +63,7 @@ function sendToSheets(e) {
   const dateStr = response[1].getResponse();
   const startStr = response[2].getResponse();
   const endStr = response[3].getResponse();
-  const date = new Date(response[1].getResponse());
+  const date = new Date(dateStr + " 12:00");
   const startDate = new Date(dateStr + " " + startStr)
   const endDate = new Date(dateStr + " " + endStr)
 
