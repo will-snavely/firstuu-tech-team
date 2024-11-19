@@ -18,6 +18,9 @@ function updateDates() {
     const data = SpreadsheetApp.getActiveSheet().getDataRange().getValues();
     var sundayEvents = new Map();
     for(var i = 1; i < data.length; i++) {
+        if(data[i][0].toString().trim() === "" || data[i][1].toString().trim() === "") {
+          continue;
+        }
         if(data[i][0].getDay() === 0 && data[i][1].getHours() === 9 && data[i][1].getMinutes() === 30)  {
           const dateStr = Utilities.formatDate(data[i][0], Session.getScriptTimeZone(), "MM/dd/YYYY");
           sundayEvents.set(dateStr, data[i]);
@@ -36,7 +39,7 @@ function updateDates() {
       const dateStr = Utilities.formatDate(currentSunday, Session.getScriptTimeZone(), "MM/dd/YYYY");
       if(!sundayEvents.has(dateStr)) {
         addedEvents.push([
-          dateStr, "9:30:00 AM", "12:00:00 AM",
+          dateStr, "9:30:00 AM", "12:00:00 PM",
           "", "", "", "",
           "Sunday Morning Service", ""
         ]);

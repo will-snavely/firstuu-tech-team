@@ -94,6 +94,10 @@ function syncCalendar(range) {
       event.setColor(CalendarApp.EventColor.BLUE);
       sheet.getRange(startRow + i, 9).setValue(event.getId());
     } else {
+      if(!eventMap.has(eventId)) {
+        throw new Error("Failed to find eventId: " + eventId);
+      }
+
       var event = eventMap.get(eventId);
       if (event.getTitle() !== eventDesc
         || event.getStartTime().getTime() !== startTime.getTime()
