@@ -36,7 +36,7 @@ function getYouTubeService() {
     .setCallbackFunction('authCallback')
     // Set the property store where authorized tokens should be persisted
     // you might want to switch to Script Properties if sharing access
-    .setPropertyStore(PropertiesService.getUserProperties())
+    .setPropertyStore(PropertiesService.getScriptProperties())
     // Set the scope and additional Google-specific parameters.
     .setScope(["https://www.googleapis.com/auth/youtube",
       "https://www.googleapis.com/auth/youtube.force-ssl",
