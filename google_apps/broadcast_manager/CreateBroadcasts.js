@@ -16,13 +16,27 @@ function createBroadcasts() {
         // Create a broadcast
         Logger.log("Creating broadcast for row:");
         Logger.log(row);
-        var broadcast_resource = insertBroadcast(row);
+        var broadcast_resource = null;
+        try {
+          broadcast_resource = insertBroadcast(row);
+        } catch(error) {
+          Logger.log("Failed to create broadcast, skipping...");
+          Logger.log(error);
+        }
 
-        // Update the category
-        updateVideo(broadcast_resource.id, row.title, NONPROFIT_CATEGORY, row.description);
+        if(broadcast_resource !== null) {
+          Logger.log("Setting broadcast category.");
+          try {
+            // Update the category
+            updateVideo(broadcast_resource.id, row.title, NONPROFIT_CATEGORY, row.description);
+          } catch(error) {
+            Logger.log("Failed to set category");
+            Logger.log(error);
+          }
 
-        // Prep data to add back to the sheet
-        row.youtube_url = "https://youtu.be/" + broadcast_resource.id;
+          // Prep data to add back to the sheet
+          row.youtube_url = "https://youtu.be/" + broadcast_resource.id;
+        }
       }
       return row;
     }).dumpValues();
